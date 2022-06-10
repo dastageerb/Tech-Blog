@@ -1,17 +1,11 @@
 package com.example
 
-import com.example.data.database.models.Article
 import com.example.data.repository.ArticleRepositoryImpl
 import com.example.endpoint.ArticleRepository
 import com.example.endpoint.articleEndPoints
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import com.example.plugins.*
-import io.ktor.server.application.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
 

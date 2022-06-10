@@ -1,8 +1,8 @@
 package com.example.data.repository
 
-import com.example.data.database.models.Article
-import com.example.data.request.RequestStatus
-import com.example.data.responses.ResponseMessage
+import com.example.data.database.entities.Article
+import com.example.model.request.RequestStatus
+import com.example.model.responses.ResponseMessage
 import com.example.endpoint.ArticleRepository
 import org.litote.kmongo.coroutine.CoroutineDatabase
 

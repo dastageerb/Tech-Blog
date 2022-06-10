@@ -1,4 +1,4 @@
-package com.example.data.request
+package com.example.model.request
 
 enum class RequestStatus
 {

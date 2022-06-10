@@ -1,7 +1,7 @@
 package com.example.endpoint
 
-import com.example.data.database.models.Article
-import com.example.data.responses.ResponseMessage
+import com.example.data.database.entities.Article
+import com.example.model.responses.ResponseMessage
 
 interface ArticleRepository
 {

@@ -1,4 +1,4 @@
-package com.example.data.database.models
+package com.example.data.database.entities
 
 enum class Category
 {
