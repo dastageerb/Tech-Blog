@@ -1,7 +1,7 @@
-package com.example.endpoint
+package com.example.utils
 
-import com.example.data.database.entities.Category
-import com.example.data.database.entities.ViewType
+import com.example.data.dbEntities.Category
+import com.example.data.dbEntities.ViewType
 
 object ParseHelper
 {
@@ -9,17 +9,17 @@ object ParseHelper
 
     // viewType
 
-    public fun ViewType.fromViewType() =this.name
+    fun ViewType.fromViewType() =this.name
 
-    public fun String.toViewType() =ViewType.valueOf(this)
+    fun String.toViewType() = ViewType.valueOf(this)
 
 
     // categoryTyp
 
-    public fun Category.fromCategory() = this.name
+    fun Category.fromCategory() = this.name
 
 
-    public fun String.toCategory() =Category.valueOf(this)
+    fun String.toCategory() = Category.valueOf(this)
 
 
 

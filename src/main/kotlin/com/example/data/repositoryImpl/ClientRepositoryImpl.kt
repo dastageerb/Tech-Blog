@@ -1,15 +1,11 @@
 package com.example.data.repositoryImpl
 
-import com.example.data.database.entities.Article
-import com.example.model.request.RequestStatus
-import com.example.model.responses.ResponseMessage
-import com.example.endpoint.ArticleRepository
-import com.example.model.request.ArticleRequest
+import com.example.data.dbEntities.Article
+import com.example.articleEndPoints.clientEndPoints.ClientRepository
 import org.litote.kmongo.coroutine.CoroutineDatabase
-import javax.management.Query.eq
 
 
-class ArticleRepositoryImpl(private val db:CoroutineDatabase): ArticleRepository
+class ClientRepositoryImpl(private val db:CoroutineDatabase): ClientRepository
 {
 
     private val collection = db.getCollection<Article>()
@@ -28,29 +24,12 @@ class ArticleRepositoryImpl(private val db:CoroutineDatabase): ArticleRepository
         //android.util.Log.d(TAG, "getAllArticles: ")
     }
 
-    override suspend fun addArticle(article: Article): ResponseMessage
-    {
-        try
-        {
-            val value = collection.insertOne(article).wasAcknowledged()
-            if (value)
-            {
-                return ResponseMessage(RequestStatus.SUCCESS,"Article Inserted Successfully")
-            }
-        }catch (e:Exception)
-        {
-            e.printStackTrace()
-        }
-        return ResponseMessage(RequestStatus.FAILED,"Some Error occurred")
-    }
 
     override suspend fun getArticleById(id: String): Article?
     {
         try
         {
-            print("Collection ->>>>>>>>>>>>>>>"+collection.findOneById(id))
             return collection.findOneById(id)
-
         }catch (e:Exception)
         {
             e.printStackTrace()
@@ -58,12 +37,6 @@ class ArticleRepositoryImpl(private val db:CoroutineDatabase): ArticleRepository
         return null
     }
 
-
-//
-//    override suspend fun getArticleById(id: String): Article
-//    {
-//
-//    }
 
 
 }

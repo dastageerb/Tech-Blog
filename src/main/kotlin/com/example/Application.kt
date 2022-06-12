@@ -1,8 +1,11 @@
 package com.example
 
-import com.example.data.repository.ArticleRepositoryImpl
-import com.example.endpoint.ArticleRepository
-import com.example.endpoint.articleEndPoints
+import com.example.articleEndPoints.adminEndPoint.AdminRepository
+import com.example.articleEndPoints.adminEndPoint.adminEndPoints
+import com.example.articleEndPoints.clientEndPoints.ClientRepository
+import com.example.articleEndPoints.clientEndPoints.clientEndPoints
+import com.example.data.repositoryImpl.ClientRepositoryImpl
+import com.example.data.repositoryImpl.AdminRepositoryImpl
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import com.example.plugins.*
@@ -22,9 +25,12 @@ fun main()
 
        val uri = "mongodb+srv://dastageer:$password@cluster0.shinzsq.mongodb.net/thetechblog?retryWrites=true&w=majority"
         val db = KMongo.createClient(connectionString = uri).coroutine.getDatabase("thetechblog")
-    val repository: ArticleRepository = ArticleRepositoryImpl(db)
-        articleEndPoints(repository)
 
+        val repository: ClientRepository = ClientRepositoryImpl(db)
+       val adminRepo : AdminRepository = AdminRepositoryImpl(db)
+
+        clientEndPoints(repository)
+        adminEndPoints(adminRepo)
 
         //  configureMonitoring()
         //configureHTTP()

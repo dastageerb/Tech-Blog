@@ -1,4 +1,4 @@
-package com.example.data.database.entities
+package com.example.data.dbEntities
 
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.types.ObjectId

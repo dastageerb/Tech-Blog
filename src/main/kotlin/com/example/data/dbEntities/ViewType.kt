@@ -1,4 +1,4 @@
-package com.example.data.database.entities
+package com.example.data.dbEntities
 
 
 enum class ViewType
