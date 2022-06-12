@@ -11,6 +11,8 @@ import io.ktor.server.routing.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
+import io.ktor.util.*
+import org.bson.types.ObjectId
 
 fun Application.adminEndPoints(repository: AdminRepository)
 {
@@ -18,16 +20,16 @@ fun Application.adminEndPoints(repository: AdminRepository)
     routing ()
     {
 
-
         /******* add Article ********/
         // add an article
-        post("/addArticle")
+        post("article/add")
         {
             try {
                 val body = call.receive<ArticleRequest>()
                 val validator = Validator.validateArticlesInput(body)
-                if (validator.valid) {
-                    val Article = Article(
+                if (validator.valid)
+                {
+                    val article = Article(
                         title = body.title,
                         description = body.description,
                         imageUrl = body.imageUrl,
@@ -35,7 +37,7 @@ fun Application.adminEndPoints(repository: AdminRepository)
                         viewType = body.viewType?.toViewType(),
                         categoryType = body.categoryType?.toCategory()
                     )
-                    call.respond(repository.addArticle(Article))
+                    call.respond(repository.addArticle(article))
                 } else {
                     call.respond(ResponseMessage(RequestStatus.ERROR, validator.message))
                 }
@@ -48,9 +50,31 @@ fun Application.adminEndPoints(repository: AdminRepository)
         delete("/article/delete/{id}")
         {
             val id = call.parameters["id"]
-            call.respond(repository.deleteArticle(id!!))
+            call.respond(repository.deleteArticleById(id!!))
         }
 
+
+        put("article/update")
+        {
+            val body = call.receive<ArticleRequest>()
+            val validator = Validator.validateArticlesInput(body)
+            if (validator.valid)
+            {
+                val article = Article(
+                    id = body.id!!,
+                    title = body.title,
+                    description = body.description,
+                    imageUrl = body.imageUrl,
+                    thumbnail = body.thumbnail,
+                    viewType = body.viewType?.toViewType(),
+                    categoryType = body.categoryType?.toCategory()
+                )
+                call.respond(repository.updateArticle(article))
+            } else
+            {
+                call.respond(ResponseMessage(RequestStatus.ERROR, validator.message))
+            }
+        } // update article closed
 
 
     }

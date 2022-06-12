@@ -8,7 +8,10 @@ interface AdminRepository
 
     suspend fun addArticle(article: Article): ResponseMessage
 
-    suspend fun deleteArticle(id:String): ResponseMessage
+    suspend fun deleteArticleById(id:String): ResponseMessage
+
+
+    suspend fun updateArticle(article: Article): ResponseMessage
 
 
 

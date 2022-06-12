@@ -2,6 +2,7 @@ package com.example.model.request
 
 @kotlinx.serialization.Serializable
 data class ArticleRequest(
+    var id:String?=null,
     var title:String?=null,
     var description:String?=null,
     var thumbnail:String?=null,

@@ -16,7 +16,7 @@ fun Application.clientEndPoints(repository: ClientRepository)
 
         /******** get all articles  *******/
         // get all articles
-        get("/articles")
+        get("article/getAll")
         {
             call.respond(repository.getAllArticles())
         }
